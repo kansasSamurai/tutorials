@@ -19,11 +19,31 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <scope>provided</scope>
         </dependency>
+
+<!-- required for JSP -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+<!-- required for JSP : end -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -72,6 +92,28 @@
             <artifactId>jquery</artifactId>
             <version>${jquery.version}</version>
         </dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>font-awesome</artifactId>
+		    <version>6.4.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/highlightjs -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>highlightjs</artifactId>
+		    <version>11.5.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/syntaxhighlighter -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>syntaxhighlighter</artifactId>
+		    <version>3.0.83</version>
+		</dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
