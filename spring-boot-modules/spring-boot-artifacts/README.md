@@ -2,6 +2,9 @@
 
 This module contains articles about configuring the Spring Boot build process.
 
+### Ricks Comments
+* Run DemoApplication.java
+
 ### Relevant Articles:			
  - [Spring Boot Dependency Management with a Custom Parent](https://www.baeldung.com/spring-boot-dependency-management-custom-parent)
  - [Create a Fat Jar App with Spring Boot](https://www.baeldung.com/deployable-fat-jar-spring-boot)
@@ -11,3 +14,5 @@ This module contains articles about configuring the Spring Boot build process.
  - [Injecting Git Information Into Spring](https://www.baeldung.com/spring-git-information)
  - [Guide to Creating and Running a Jar File in Java](https://www.baeldung.com/java-create-jar)
  - More articles: [[next -->]](/spring-boot-modules/spring-boot-artifacts-2)
+
+

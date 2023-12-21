@@ -2,32 +2,58 @@ package com.baeldung.wrapper;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.baeldung.domain.Order;
 import com.baeldung.domain.OrderForm;
 import com.baeldung.domain.OrderFullForm;
+import com.baeldung.web.data.Link;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class DemoController {
 
-	@Autowired
-	private InternalResourceViewResolver ivr;
+	private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+
+	private static final ObjectMapper mapper = new ObjectMapper();
+
+//	@Autowired
+//	private InternalResourceViewResolver ivr;
 
 	@GetMapping(value = "/")
 	public String root(Model model) {
+		logger.info("context root (/) is mapped to index");
+
+		final Map<String,Link> linkMap = new HashMap<>();
+		model.addAttribute("linkMap", linkMap);
+
+		Link link = new Link("JSP", "https://docs.oracle.com/javaee/5/tutorial/doc/bnagy.html");
+		linkMap.put("JSP", link);
+
+		link = new Link("Thymeleaf", "https://www.thymeleaf.org/doc/tutorials/3.0/thymeleafspring.html#views-and-view-resolvers-in-spring-mvc");
+		linkMap.put("Thymeleaf", link);
+
+		try {
+			model.addAttribute("LINKS", mapper.writeValueAsString(linkMap));
+		} catch (JsonProcessingException e) {
+			logger.error("", e);
+		}
+		
 //		ivr.removeFromCache("index", Locale.getDefault());
+
 		return "index";
+		// Note that this will be handled by a JSP due to the following config:
+		// spring.mvc.view.view-names=index,jsp/*
 	}
 
 	@GetMapping(value = "/menu")
@@ -45,13 +71,13 @@ public class DemoController {
 		return thymeleaf("ajax");
 	}
 
-	@GetMapping(value = "/welcome")
-	public String welcome(Model model) {
+	@GetMapping(value = "/hello")
+	public String hello(Model model) {
 		model.asMap().put("time", new Date());
 		model.asMap().put("message", "Hello World!");
 
 		// A variable to enable runtime modification via debugger
-		String viewname = "welcome";
+		String viewname = "hello";
 		return jsp(viewname);
 	}
 
