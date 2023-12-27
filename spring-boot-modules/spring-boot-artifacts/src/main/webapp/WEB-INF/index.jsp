@@ -127,16 +127,19 @@ $(function() {
 	// A class with code content so that I don't have to pre-encode the content.
 	const CODE = {
 
-		// properties whose value are multiline strings of code content
+		// properties whose value are code/multiline strings of code content
+
+		securityTest: 'alert("Attack!")',
+
+		//c:url tag
+		ctag: `c:url value="/resources/text.txt?a=1&b=2" var="url"/`,
+
+		// spring tag
+		stag: `spring:url value="/resources/text.txt?a=1&b=2" htmlEscape="true" var="springUrl" /`,
+
 		controller: 
 `@ResponseBody @PostMapping(value = "ajaxform")
 public Object method(@RequestBody Form form)`,
-
-		ctag: // c:url tag
-`c:url value="/resources/text.txt?a=1&b=2" var="url"/`,
-
-		stag: // spring tag
-`spring:url value="/resources/text.txt?a=1&b=2" htmlEscape="true" var="springUrl" /`,
 
 		config: 
 `spring.mvc.view.view-names=index,jsp/*
@@ -144,11 +147,43 @@ public Object method(@RequestBody Form form)`,
 spring.thymeleaf.view-names=thymeleaf/*
 spring.thymeleaf.template-resolver-order=1 `,
 
+		insert: function(target, content) {
+			// text() function will escape html
+			$(target).text(content);
+		},
+
+		add: function(target, content) {
+			// append() function will NOT escape html
+			$(target).append('\n');
+			$(target).append(this.escapeHtml(content));
+		},
+
 		// utility method to wrap string in brackets
 		brackets: function(x) {
 			return '<' + x + '>'
-		} 
-
+		},
+		
+		tags: function(tag, content) {
+			return '<' + tag + '>' + content + '</' + tag + '>';
+		},
+		
+		// Not sure this is completely tested but see the following for the discussion:
+		// https://api.jquery.com/text/#text-function-function
+		// https://stackoverflow.com/questions/6234773/can-i-escape-html-special-chars-in-javascript
+		// https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR21#:~:text=The%20createTextNode()%20is%20used,attributes%20to%20the%20created%20elements.
+		escapeHtml: function(unsafe) {
+			return document.createTextNode(unsafe);
+		},
+		
+		escapeHtmlOld: (unsafe) => {
+		return unsafe
+			.replaceAll('&', '&amp;')
+			.replaceAll('<', '&lt;')
+			.replaceAll('>', '&gt;')
+			.replaceAll('"', '&quot;')
+			.replaceAll("'", '&#039;');
+		},
+		
 	}; // end CODE
 
 	const LINKS = ${LINKS};
@@ -166,7 +201,9 @@ spring.thymeleaf.template-resolver-order=1 `,
 	};
 	
 	// Update empty div's with code content
-	$('#codeTags').text(CODE.brackets(CODE.ctag) + '\n' + CODE.brackets(CODE.stag));
+	CODE.insert('#codeTags', CODE.brackets(CODE.ctag));
+	CODE.add('#codeTags', CODE.brackets(CODE.stag));
+	CODE.add('#codeTags', CODE.tags('script', CODE.securityTest));
 	$('#codeConfig').text(CODE.config);
 	$('#codeController').text(CODE.controller);
 
