@@ -64,12 +64,12 @@
 		<br/>
 
 		<%-- https://stackoverflow.com/questions/5007210/how-to-use-springurl-with-an-a-tag#:~:text=The%20one%20important%20difference%20between,c%3Aout%20to%20escape%20it. --%>
-		<c:url value="/resources/text.txt?a=1&b=2" var="url"/>
-		<spring:url value="/resources/text.txt?a=1&b=2" htmlEscape="true" var="springUrl" />
+		<c:url value="/resources/text.txt?a=1&b=2" var="curl"/>
+		<spring:url value="/resources/text.txt?a=1&b=2" htmlEscape="true" var="surl" />
 
-		<p>Spring URL: ${springUrl}, as link: <a href="${springUrl}">click me</a></p>
+		<p>JSTL URL: ${curl}, as link: <a href="${curl}">click me</a></p>
 
-		<p>JSTL URL: ${url}, as link: <a href="${url}">click me</a></p>
+		<p>Spring URL: ${surl}, as link: <a href="${surl}">click me</a></p>
 
 	</div>
 

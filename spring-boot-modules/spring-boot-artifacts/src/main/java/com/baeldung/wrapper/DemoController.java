@@ -36,6 +36,7 @@ public class DemoController {
 
 		final Map<String,Link> linkMap = new HashMap<>();
 		model.addAttribute("linkMap", linkMap);
+		// As of DEC 2023, linkMap is no longer directly used in the JSP/view
 
 		Link link = new Link("JSP", "https://docs.oracle.com/javaee/5/tutorial/doc/bnagy.html");
 		linkMap.put("JSP", link);
@@ -57,12 +58,12 @@ public class DemoController {
 	}
 
 	@GetMapping(value = "/menu")
-	public String index(Model model) {
+	public String menu(Model model) {
 		return thymeleaf("menu");
 	}
 
 	@GetMapping(value = "/index")
-	public String demo(Model model) {
+	public String index(Model model) {
 		return thymeleaf("index");
 	}
 
@@ -98,20 +99,24 @@ public class DemoController {
 		return name;
 	}
 
-	/* Works with following client side javascript:
-     * 
-	let data = { customerId: 5, poNumber: 'ACME-123'} ;
-	$.ajax( {
-		url : 'ajax',
-		method : 'POST',
-		contentType: 'application/json',
-		data: JSON.stringify(data)
-	}).done(function(response) {
-		$(this).addClass("done");
-	});
-
-     * 
-     */
+	/* ========================================================================
+	 * The rest of this controller are AJAX methods
+	 * ========================================================================
+	 * 
+	 * Works with following client side javascript:
+	 * 
+		let data = { customerId: 5, poNumber: 'ACME-123'} ;
+		$.ajax( {
+			url : 'ajax',
+			method : 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(data)
+		}).done(function(response) {
+			$(this).addClass("done");
+		});
+	 * 
+	 * 
+	 */
 	@ResponseBody
 	@PostMapping(value = "ajax")
 	public Map<String, Object> ajax(@RequestBody Order order) {
