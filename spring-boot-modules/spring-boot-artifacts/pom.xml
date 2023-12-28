@@ -8,33 +8,35 @@
     <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 	<!-- As of NOV 2023, I am packaging as a war.  However...
-	     If you are packaging your application as a JAR (deploying a .jar), 
-	     using src/main/webapp is not recommended.
-	     
-	     The reason I am currently using webapp folder is because
-	     this app uses "traditional" JSPs in the traditional location:
-	     src/main/webapp/WEB-INF/ (in a folder named 'jsp' or something similar.
-	     
-	     https://docs.spring.io/spring-boot/docs/1.4.3.RELEASE/reference/html/boot-features-developing-web-applications.html
-	     Do not use the src/main/webapp directory if your application will be packaged as a jar. 
-	     Although this directory is a common standard, it will only work with war packaging 
-	     and it will be silently ignored by most build tools if you generate a jar.
-	     
-	     At some point, I want to move those under the .../resources folder
-	     (probably into a sub-folder of 'templates' just like thymeleaf)
-	     and reconfigure spring boot to see if that works fairly seamlessly
-	     (which I am expecting it will)
-	     
-	     p.s.  There is an interesting workaround/bridge for apps migrating
-	     to .jar from .war mentioned in this post
-	     https://stackoverflow.com/questions/28725635/spring-boot-configure-it-to-find-the-webapp-folder
-	     
-	     Basically, modify your POM to include src/main/webapp as a resources directory:
-	     <build>
-            <resources>
-                <resource>
-                    <directory>src/main/webapp</directory>
-                </resource>
+		 If you are packaging your application as a JAR (deploying a .jar), 
+		 using src/main/webapp is not recommended.
+		 
+		 The reason I am currently using webapp folder is because
+		 this app uses "traditional" JSPs in the traditional location:
+		 src/main/webapp/WEB-INF/ (in a folder named 'jsp' or something similar.
+		 
+		 https://docs.spring.io/spring-boot/docs/1.4.3.RELEASE/reference/html/boot-features-developing-web-applications.html
+		 Do not use the src/main/webapp directory if your application will be packaged as a jar. 
+		 Although this directory is a common standard, it will only work with war packaging 
+		 and it will be silently ignored by most build tools if you generate a jar.
+		 
+		 At some point, I want to move those under the .../resources folder
+		 (probably into a sub-folder of 'templates' just like thymeleaf)
+		 and reconfigure spring boot to see if that works fairly seamlessly
+		 (which I am expecting it will)
+		 
+		 p.s.  There is an interesting workaround/bridge for apps migrating
+		 to .jar from .war mentioned in this post
+		 https://stackoverflow.com/questions/28725635/spring-boot-configure-it-to-find-the-webapp-folder
+		 ^^^ DEC 2023 - upon further research, this appears to apply 
+		 	to "static" resources only i.e. NOT .jsp's'
+
+		 Basically, modify your POM to include src/main/webapp as a resources directory:
+		<build>
+			<resources>
+				<resource>
+					<directory>src/main/webapp</directory>
+				</resource>
 	-->
 
     <parent>
@@ -162,7 +164,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.baeldung.webjar.WebjarsdemoApplication</mainClass>
+                            <mainClass>com.baeldung.wrapper.DemoApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
