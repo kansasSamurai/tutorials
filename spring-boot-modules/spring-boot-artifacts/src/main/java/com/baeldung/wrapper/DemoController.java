@@ -76,6 +76,10 @@ public class DemoController {
 	public String hello(Model model) {
 		model.asMap().put("time", new Date());
 		model.asMap().put("message", "Hello World!");
+		model.asMap().put("nameone", "O'Brien");
+		model.asMap().put("nametwo", "Double\"Quotes");
+		model.asMap().put("namethree", "Back`Tick");
+		model.asMap().put("namefour", "Double\"\"Quotes");
 
 		// A variable to enable runtime modification via debugger
 		String viewname = "hello";

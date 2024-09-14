@@ -24,6 +24,25 @@
 	<link rel="stylesheet" href="/webjars/highlightjs/11.5.0/styles/default.min.css">
 	<script src="/webjars/highlightjs/11.5.0/highlight.min.js"></script>
 
+	<script>
+		// You can't use the following two lines or else you will get errors:
+		// Uncaught SyntaxError: Unexpected identifier 'Brien' (at hello:26:27)
+		// var namewithonebug = '${nameone}';
+		// Uncaught SyntaxError: Unexpected identifier 'Quotes' (at hello:29:32)
+		// var namewithtwobug = "${nametwo}";
+		// This can be seen when viewing the rendered output:
+		// var namewithtwobug = "Double"Quotes";
+		// var namewithonebug = 'O'Brien';
+
+		var nameonefixed = '<c:out value='${nameone}' />';
+		var nametwofixed = "<c:out value="${nametwo}" />";
+		var namethree = "${namethree}";
+		var namethreefixed = "<c:out value="${namethree}" />";
+		// When fixed, these render as:
+		// var nameonefixed = 'O&#039;Brien';
+		// var nametwofixed = "Double&#034;Quotes";
+
+	</script>
 </head>
 
 <body>
@@ -55,15 +74,13 @@
 		  <blockquote class="blockquote">
 			<p>
 		  	... it also demonstrates the difference between 
-		  	the spring:url tag and the jstl url tag c:url.
-		    <br/>You have to view page source to see the escaped difference.
+		  	the <b>spring:url</b> tag and the <b>c:url</b> tag (JSTL).
+		    <br/>You have to "view page source" to see the escaped difference.
 		    </p>
 		  </blockquote>
 		</figure>
 
-		<br/>
-
-		<%-- https://stackoverflow.com/questions/5007210/how-to-use-springurl-with-an-a-tag#:~:text=The%20one%20important%20difference%20between,c%3Aout%20to%20escape%20it. --%>
+		<%-- https://stackoverflow.com/questions/5007210/how-to-use-springurl-with-an-a-tag --%>
 		<c:url value="/resources/text.txt?a=1&b=2" var="curl"/>
 		<spring:url value="/resources/text.txt?a=1&b=2" htmlEscape="true" var="surl" />
 
@@ -71,6 +88,27 @@
 
 		<p>Spring URL: ${surl}, as link: <a href="${surl}">click me</a></p>
 
+		<br/>
+		<figure>
+			<blockquote class="blockquote">
+			<p>
+			... it also demonstrates the use of <b>c:out</b> tag to
+			assign values to javascript variables when they contain
+			such characters as single and double quotes.
+			<br/>
+			Use the browser console to view the following variables:
+		</p>
+			</blockquote>
+		</figure>
+
+		<p>
+		Javascript var <b>nameonefixed</b>, with single quote(s): <c:out value='${nameone}' /><br/>
+		Javascript var <b>nametwofixed</b>, with double quote(s): <c:out value="${nametwo}" /><br/>
+		Javascript var <b>namefour</b>, double double quote(s): <c:out value="${namefour}" /><br/>
+		Javascript var <b>namefour</b>, double double quote(s): ${namefour}<br/>
+		<!-- Input field -->
+		<input type="text" id="myInput" placeholder="Enter text"> 
+		</p>
 	</div>
 
 
