@@ -7,7 +7,52 @@
     <name>spring-boot-artifacts</name>
     <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
-	<!-- As of NOV 2023, I am packaging as a war.  However...
+
+    <!-- NOV 2024 - OK... the summary is this:  There are two closely related issues that play together:
+        1) First, and most importantly, the biggest issue is how your build tool(s) 
+        [particularly, but not limited to Maven] behave differently with .jar and .war packaging.
+        As noted in Spring documentation (and included below), the src/main/webapp folder
+        will not be recognized (by **default) when doing .jar packaging.  Hence,
+        your .jsp files will not get included in the .jar artifact.  However, 
+        if you choose .war packaging, they WILL get included in the .war artifact!!
+        Further, the .war is just as executable as a .jar 
+        ^^^ This is the absolutely recommended way to go.
+        ^^^ It also gives you the flexibility to deploy to a Servlet Container (i.e. Tomcat)
+        ^^^ or run "serverless" (i.e. embedded Tomcat)
+        2) Even if you modify your build tool to include contents inside src/main/webapp
+        Spring Boot will likely not be configured by default to find them.  
+        3) There is an interesting alternative at the following URL:
+        https://stackoverflow.com/questions/21243690/is-it-possible-with-spring-boot-to-serve-up-jsps-with-a-jar-packaging
+        
+        It basically has you deploy the .jar and the .jsp's separately onto the target server.
+        While this is "atypical", it DOES work - there is nothing wrong with this approach
+        other than knowing you are using an atypical setup and have to package your
+        .jar and .jsp files separetely for deployment.
+        
+        4) There was also interesting information provided by Google AI
+        when searching for "":
+        
+        * JSP files - Place your JSP files under the src/main/resources/META-INF/resources/WEB-INF directory in your project. 
+        This is where Spring Boot's embedded Tomcat will look for them. 
+        
+        * Configure View Resolver - In your Spring Boot configuration class, 
+        create a InternalResourceViewResolver bean to resolve JSP views:
+        (This is java config - same can be done with XML or .properties)
+        
+        @Configuration
+        public class WebMvcConfig implements WebMvcConfigurer {
+
+         @Bean
+         public InternalResourceViewResolver viewResolver() {
+           InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+           resolver.setPrefix("/WEB-INF/jsp/"); // Adjust the prefix if needed
+           resolver.setSuffix(".jsp");
+           return resolver;
+         }
+
+
+    -->
+    <!-- As of NOV 2023, I am packaging as a war.  However...
 		 If you are packaging your application as a JAR (deploying a .jar), 
 		 using src/main/webapp is not recommended.
 		 
