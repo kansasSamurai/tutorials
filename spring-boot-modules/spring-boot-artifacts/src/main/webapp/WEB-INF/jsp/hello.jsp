@@ -1,11 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<!DOCTYPE html>
-
 <%-- This file is slightly modified from:
-	https://github.com/spring-projects/spring-boot/blob/v1.3.3.RELEASE/spring-boot-samples/spring-boot-sample-web-jsp/src/main/webapp/WEB-INF/jsp/welcome.jsp
+    https://github.com/spring-projects/spring-boot/blob/v1.3.3.RELEASE/spring-boot-samples/spring-boot-sample-web-jsp/src/main/webapp/WEB-INF/jsp/welcome.jsp
 --%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,8 +30,8 @@
 		// Uncaught SyntaxError: Unexpected identifier 'Quotes' (at hello:29:32)
 		// var namewithtwobug = "${nametwo}";
 		// This can be seen when viewing the rendered output:
+        // var namewithonebug = 'O'Brien';
 		// var namewithtwobug = "Double"Quotes";
-		// var namewithonebug = 'O'Brien';
 
 		var nameonefixed = '<c:out value='${nameone}' />';
 		var nametwofixed = "<c:out value="${nametwo}" />";
