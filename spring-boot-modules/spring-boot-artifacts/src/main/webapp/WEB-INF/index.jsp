@@ -11,29 +11,26 @@
 
 	<title>WebJars Demo</title>
 
-	<!-- our project just needs Font Awesome Solid + Brands -->
-	<link href="/webjars/font-awesome/6.4.2/css/fontawesome.css" rel="stylesheet">
-	<link href="/webjars/font-awesome/6.4.2/css/brands.css" rel="stylesheet">
-	<link href="/webjars/font-awesome/6.4.2/css/solid.css" rel="stylesheet">
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="/webjars/font-awesome/6.4.2/css/fontawesome.css" rel="stylesheet">
+    <link href="/webjars/font-awesome/6.4.2/css/brands.css" rel="stylesheet">
+    <link href="/webjars/font-awesome/6.4.2/css/solid.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 
-	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-
-	<link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
-	<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-
-	<!-- default, agate(i.e.blackboard), obsidian -->
+    <!-- highlightjs default, agate(i.e.blackboard), obsidian -->
 	<link href="/webjars/highlightjs/11.5.0/styles/obsidian.min.css" rel="stylesheet">
-	<script src="/webjars/highlightjs/11.5.0/highlight.min.js"></script>
 
 	<!-- highlightjs-copy -->
 	<link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet" />
-	<script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
 
 	<style>
 		pre { background: #282b2e; }
 
 		/* Override highlight style(s) */
-		pre code.hljs { padding: 0px; }
+        pre code.hljs { padding: 0px; }
+
+        /* The default for this is too dark so match hljs-tag color */
+        pre code.hljs span.hljs-meta { color: #8cbbad; }
 
 		/* Simulate FA5+ styles */
 		.ms-3 { margin-left: 3px;}
@@ -71,10 +68,12 @@
 					<li><a href="https://github.com/arronhunt/highlightjs-copy/" target="_blank">highlightjs-copy<i class="ms-3 fa-xs fa-solid fa-arrow-up-right-from-square"></i></a></li>
 					<li><a href="https://fontawesome.com/" target="_blank">FontAwesome<i class="ms-3 fa-xs fa-solid fa-arrow-up-right-from-square"></i></a></li>
 					<li>Ability to use both <span class="JSP">JSP</span>
-						and <span class="Thymeleaf">Thymeleaf</span> templates using: 
+						and <span class="Thymeleaf">Thymeleaf</span> templates using**:
 						<pre><code id="codeConfig">code-goes-here</code></pre>
-							Important: If Thymeleaf <code>view-names</code> is not set (i.e. null), <code>ThymeleafViewResolver</code> will not pass
-							views to JSP <code>InternalResourceViewResolver</code>.
+                            ** Important: If <code>thymeleaf.view-names</code> is not set (i.e. null), <code>ThymeleafViewResolver</code> will not pass
+                            views to JSP <code>InternalResourceViewResolver</code>.
+                            <br/>
+                            <br/>
 					</li>
 					<li>Reload Thymeleaf templates using: 
 						<pre><code>spring.thymeleaf.cache=false</code></pre>
@@ -82,13 +81,13 @@
 					<li>Reload JSPs using: 
 						<pre><code>server.servlet.jsp.init-parameters.development=true</code></pre>
 					</li>
-					<li>Submit rich JSON data model to AJAX Controllers using: 
-						<pre><code id="codeController"></code></pre>
+					<li>Submit rich JSON data model via jQuery/AJAX to Controllers using: 
+						<pre><code id="codeController" class="language-java"></code></pre>
 					</li>
 					<li>Demonstrate the difference between 
 						the ${Spring}<a href="https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/spring-tld.html" target="_blank">Spring</a> <code>spring:url</code> tag
 						and the ${JSTL}<a href="https://docs.oracle.com/javaee/5/tutorial/doc/bnake.html" target="_blank">JSTL</a> <code>c:url</code> tag: 
-						<pre><code id="codeTags"></code></pre>
+						<pre><code id="codeTags" class="language-html"></code></pre>
 					</li>
 				</ul>
 
@@ -121,7 +120,13 @@
 		</div>
 	</div>
 
-<script>
+    <!-- ================== BEGIN core-js ================== -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/highlightjs/11.5.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+    <script> // App specific javascript goes here
+
 $(function() {
 	
 	// A class with code content so that I don't have to pre-encode the content.

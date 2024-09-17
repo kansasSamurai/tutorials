@@ -1,24 +1,53 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>WebJars Demo</title>
-	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>WebJars Demo</title>
+
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link href="/webjars/font-awesome/6.4.2/css/fontawesome.css" rel="stylesheet">
+    <link href="/webjars/font-awesome/6.4.2/css/brands.css" rel="stylesheet">
+    <link href="/webjars/font-awesome/6.4.2/css/solid.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+
 </head>
 <body>
-	<h1>Menu</h1>
-	<div class="container">
-		<br/>
-		<div class="alert alert-success">
-			/demo<br/>
-			/jquery<br/>
-			/welcome<br/>
-			<hr/>
-		  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-		  <strong>Success!</strong> This is the menu for this app.
-		</div>
-	</div>
 
-<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <div class="container-fluid">
 
+        <div class="page-header">
+            <h1>Welcome <small>menu.html</small></h1>
+        </div>
+
+        <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+          <strong>Success!</strong> menu.html is working as we expected. (.../templates/thymeleaf )
+        </div>
+
+        <div class="row"><!--  class="bg-body-tertiary rounded" -->
+
+            <div class="col-md-9">
+                <p>
+                    This is a rough menu for this app:<br/>
+                    /demo<br/>
+		            /jquery<br/>
+		            /welcome<br/>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================== BEGIN core-js ================== -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script> // App specific javascript goes here
+    </script>
+  
 </body>
 </html>
