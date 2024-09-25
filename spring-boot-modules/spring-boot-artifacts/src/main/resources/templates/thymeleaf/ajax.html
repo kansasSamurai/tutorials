@@ -111,42 +111,47 @@ $(function() {
 });
 
 function doSubmitOrder() {
-	let data = {};
+    // data model - if not doing several proof of concepts,
+    // this initialization would be sufficient.
+    let data = {};
 
-	let version = 3;
-	switch (version) {
-	case 1: // ajax :: @RequestBody Order
-		data = { customerId: 5, poNumber: 'ACME-123' }; 
-		break;
-	case 2: // ajaxform :: @RequestBody OrderForm
-		data = {
-			order: { customerId: 5, poNumber: 'ACME-123' },
-		};
-		break;
-	case 3: // ajaxfullform :: @RequestBody OrderFullForm
-		data = {
-			order: { customerId: 5, poNumber: 'ACME-123' },
-			lineItems: [
-				{ productId: 15, quantity: 7},
-				{ productId: 69, quantity: 7},
-			],
-		};
-		break;
-	}
+    // Proof of Concept options
+    let version = 3;
+    switch (version) {
+    case 1: // ajax :: @RequestBody Order
+        data = { customerId: 5, poNumber: 'ACME-123' }; 
+        break;
+    case 2: // ajaxform :: @RequestBody OrderForm
+        data = {
+            order: { customerId: 5, poNumber: 'ACME-123' },
+        };
+        break;
+    case 3: // ajaxfullform :: @RequestBody OrderFullForm
+        data = {
+            order: { customerId: 5, poNumber: 'ACME-123' },
+            lineItems: [
+                { productId: 15, quantity: 7},
+                { productId: 69, quantity: 7},
+            ],
+        };
+        break;
+    }
 
-	let contentType = 'application/json';
-	let formatted = (contentType === 'application/json')
-		? JSON.stringify(data) : data;
+    const contentType = 'application/json';
+    const formatted = (contentType === 'application/json') 
+            ? JSON.stringify(data) : data;
 
-	$.ajax( {
-		url : 'ajaxfullform',
-		method : 'POST',
-		contentType: contentType,
-		data: formatted
-	}).done(function(response) {
-		$('#ajaxAlert').toggleClass('alert-warning alert-success');
-	});
-	
+    // Submit the AJAX request
+    $.ajax( {
+        url : 'ajaxfullform',
+        method : 'POST',
+        contentType: contentType,
+        data: formatted
+    }).done(function(response) {
+        // Handle the AJAX response
+        $('#ajaxAlert').toggleClass('alert-warning alert-success');
+    });
+
 }
 </script>
 

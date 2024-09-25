@@ -15,33 +15,9 @@
 
     <title>WebJars Demo</title>
 
-    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="/webjars/highlightjs/11.5.0/styles/default.min.css">
-    <script src="/webjars/highlightjs/11.5.0/highlight.min.js"></script>
 
-    <script>
-        // You can't use the following two lines or else you will get errors:
-        // Uncaught SyntaxError: Unexpected identifier 'Brien' (at hello:26:27)
-        // var namewithonebug = '${nameone}';
-        // Uncaught SyntaxError: Unexpected identifier 'Quotes' (at hello:29:32)
-        // var namewithtwobug = "${nametwo}";
-        // This can be seen when viewing the rendered output:
-        // var namewithonebug = 'O'Brien';
-        // var namewithtwobug = "Double"Quotes";
-
-        var nameonefixed = '<c:out value='${nameone}' />';
-        var nametwofixed = "<c:out value="${nametwo}" />";
-        var namethree = "${namethree}";
-        var namethreefixed = "<c:out value="${namethree}" />";
-        // When fixed, these render as:
-        // var nameonefixed = 'O&#039;Brien';
-        // var nametwofixed = "Double&#034;Quotes";
-
-    </script>
 </head>
 
 <body>
@@ -117,6 +93,30 @@
 
     </div>
 
+    <!-- ================== BEGIN core-js ================== -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/highlightjs/11.5.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+    <script> // App specific javascript goes here
+	    // You can't use the following two lines or else you will get errors:
+	    // Uncaught SyntaxError: Unexpected identifier 'Brien' (at hello:26:27)
+	    // var namewithonebug = '${nameone}';
+	    // Uncaught SyntaxError: Unexpected identifier 'Quotes' (at hello:29:32)
+	    // var namewithtwobug = "${nametwo}";
+	    // This can be seen when viewing the rendered output:
+	    // var namewithonebug = 'O'Brien';
+	    // var namewithtwobug = "Double"Quotes";
+
+	    // When fixed, these render as:
+        // var nameonefixed = 'O&#039;Brien';
+        // var nametwofixed = "Double&#034;Quotes";
+
+	    var nameonefixed = '<c:out value='${nameone}' />';
+	    var nametwofixed = "<c:out value="${nametwo}" />";
+	    var namethree = "${namethree}";
+	    var namethreefixed = "<c:out value="${namethree}" />";
+    </script>
 
 </body>
 
