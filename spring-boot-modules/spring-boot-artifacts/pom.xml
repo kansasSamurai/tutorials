@@ -170,23 +170,34 @@
             <version>${subethasmtp.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- ///// WEBJARS ///// -->
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>${bootstrap.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
             <version>${jquery.version}</version>
         </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>font-awesome</artifactId>
-		    <version>6.4.2</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>6.4.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars.npm/animate.css -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>animate.css</artifactId>
+            <version>4.1.1</version>
+        </dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/highlightjs -->
 		<dependency>
